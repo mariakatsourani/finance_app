@@ -1,0 +1,11 @@
+Options -MultiViews
+#Options -Indexes
+RewriteEngine On
+
+#RewriteBase /finance_app
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#Passing the url as a GET variable
+RewriteRule ^(.+)$ init.php?url=$1 [QSA,L]

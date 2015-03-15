@@ -1,5 +1,4 @@
 <?php
-
 class Router{
 
     protected $controller = 'home'; //contains the controller object
@@ -9,13 +8,18 @@ class Router{
     public function __construct(){
         $url = $this->parseUrl();
 
-        //does the controller file exist
-        if(file_exists('../controllers/' . $url[0] . '.php')){
-            $this->controller = $url[0]; //replace the home controller
-            unset($url[0]);
+        if(isset($url[0])){//if empty call home controller
+            //does the controller file exist
+            if(file_exists('../finance_app/controllers/' . $url[0] . '.php')){
+                $this->controller = $url[0]; //replace the home controller
+                unset($url[0]);
+            }else{
+                $this->controller = 'error';
+                $this->method = 'pageNotFound';
+            }
         }
 
-        require_once '../controllers/' . $this->controller . '.php';
+        require_once '../finance_app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         //does the method exist in the given controller
@@ -35,13 +39,9 @@ class Router{
         //var_dump($this->params);
     }
 
-    public function parseUrl(){//protected
+    protected function parseUrl(){
         if(isset($_GET['url'])){
-            /*$url = rtrim($_GET['url'], DIRECTORY_SEPARATOR);
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url, FILTER_SANITIZE_URL);
-            return $url;*/
-            return $url = explode('/', filter_var( rtrim($_GET['url'],DIRECTORY_SEPARATOR ), FILTER_SANITIZE_URL) );
+            return $url = explode('/', filter_var( rtrim($_GET['url'],'/' ), FILTER_SANITIZE_URL) );
         }
     }
 }

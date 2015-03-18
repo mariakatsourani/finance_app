@@ -1,12 +1,13 @@
 <?php
-class Account extends Controller{
 
-	protected $errors;
+class AccountController {
 
-    public function index(){
+    protected $errors;
+
+    public function index() {
 
     }
-    
+
     public function loginAction() {
 
         // get variables
@@ -148,5 +149,4 @@ class Account extends Controller{
 
         return $input;
     }
-}
 }

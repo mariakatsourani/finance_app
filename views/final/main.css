@@ -102,17 +102,12 @@ margin-left: 100px;
 }
 
 #tot {
-	
-	
 	margin-left: 182px;
-
 }
 
 .inlineOver {
 	font-size: 30px;
 	font-weight: bold;
-
-
 }
 
 .inlineUnder {
@@ -138,6 +133,7 @@ hr {
 .footer {
 	
 }
+
 .footerButtons{
 	float:right;
 	padding: 10px;
@@ -151,6 +147,7 @@ hr {
 #sell {
 	margin-right: 40px;
 }
+
 #deposit {
 	margin-top: 100px;
 	margin-left:-1340px;
@@ -166,7 +163,6 @@ hr {
 #edit{
 	font-weight: bold;
 	margin-left: 85px;
-	
 }
 
 #info{
@@ -183,12 +179,12 @@ hr {
 
 #mail_myaccount {
 	margin-left: -50px;
-	
 }
 
 #address_myaccount {
 	margin-left: 17px;
 }
+
 input[type=submit] {
 	padding:20px 30px; background:#16807f; border:0 none;
     cursor:pointer;
@@ -199,3 +195,53 @@ input[type=submit] {
   	color:white; 
 }
 
+#nasdaqMenu {
+    margin-left: -8px;
+}
+
+#aboutMenu {
+    margin-left: -50px;
+}
+
+#startMenu {
+    margin-right: 50px;
+}
+
+.aboutContainer {
+    margin-left: 350px;
+	margin-top: 30px;
+    width: 950px;
+    height: 400px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+}
+
+.aboutContainer h5 {
+    font-size: 30px;
+}
+
+.infoRow {
+    font-size: 30px;
+	font-weight: bold;
+}
+
+.infoRow ul, li{
+	display: inline-block;
+	padding: 10px;
+}
+
+#index {
+	margin-top: -20px;
+}
+
+#status {
+	margin-left: 400px;
+}
+
+#latest {
+	margin-left: 20px;
+}
+
+#time {
+	margin-left: 20px;
+}

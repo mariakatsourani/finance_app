@@ -5,8 +5,10 @@ class Account extends Controller{
     protected $errors;
 
     public function index(){
-    
-		header("location: /finance_app/views/login");
+        $db = Database::getInstance();
+        $data = $db->query_sql("SELECT * FROM users WHERE user_id=:user_id",
+                        array('user_id' => $_SESSION['id']));
+		$this->view('my_account_view', $data[0]);
     }
 
     public function login() {
@@ -18,7 +20,7 @@ class Account extends Controller{
         // if login button is pushed
         if (isset($_POST["login_btn"])) {
 
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
+            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "");
             $stm2 = $db->prepare('SELECT * FROM users WHERE email = :email');
             $stm2->bindParam(":email", $email, PDO::PARAM_STR);
                 if($stm2->execute()) {
@@ -72,7 +74,7 @@ class Account extends Controller{
         session_destroy();
 
         // redirect to login
-        header("location: /finance_app/views/index.php");
+        header("location: /finance_app/");
     }
 
     public function register() {
@@ -83,11 +85,13 @@ class Account extends Controller{
 
         // get variables
         $email = $this->validateEmail($_POST['email']);
-        $password = $this->validatePasswordMatch($_POST['password'], $_POST['re_password']);
+        //----------$password = $this->validatePasswordMatch($_POST['password'], $_POST['re_password']);
         $hashPass = password_hash($password, PASSWORD_BCRYPT);
 
         $last_name = $_POST['last_name'];
         $first_name = $_POST['first_name'];
+        $bank = $_POST['bank'];
+        $account = $_POST['account'];
         $pnr = $_POST['pnr'];
         $balance = 50000;
         // check if everything is valid
@@ -95,8 +99,11 @@ class Account extends Controller{
 
 
             // connect to db and add new user
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root") ;
-            $stm = $db->prepare("INSERT INTO users (email, password, first_name, last_name, pnr, actual_balance, virtual_balance) VALUES (:email, :password, :first_name, :last_name, :pnr, :balance, :balance) ");
+            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "") ;
+            $stm = $db->prepare("INSERT INTO users (email, password, first_name,
+                                  last_name, pnr, actual_balance, virtual_balance, bank, account_number)
+                                  VALUES (:email, :password, :first_name, :last_name,
+                                  :pnr, :balance, :balance, :bank, :account) ");
             $stm->bindParam(":email", $email, PDO::PARAM_STR);
             $stm->bindParam(":password", $hashPass, PDO::PARAM_STR);
             $stm->bindParam(":first_name", $first_name, PDO::PARAM_STR);
@@ -104,6 +111,8 @@ class Account extends Controller{
             $stm->bindParam(":pnr", $pnr, PDO::PARAM_INT);
             $stm->bindParam(":balance", $balance, PDO::PARAM_INT);
             $stm->bindParam(":balance", $balance, PDO::PARAM_INT);
+            $stm->bindParam(":bank", $bank, PDO::PARAM_STR);
+            $stm->bindParam(":account", $account, PDO::PARAM_INT);
 
             // if db insert is successful, send user to portfolio
             if($stm->execute()) {

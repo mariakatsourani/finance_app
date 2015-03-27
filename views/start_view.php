@@ -9,13 +9,13 @@
   <meta charset="utf-8" />
   <title>Lorenum</title>
     <script type="text/javascript" src="js/main.js"></script>
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css/main1.css" rel="stylesheet" type="text/css">
-    <script src="js/modernizr.js"></script>
+    <link href="/finance_app/views/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/finance_app/views/css/main1.css" rel="stylesheet" type="text/css">
+    <script src="/finance_app/views/js/modernizr.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:700,400' rel='stylesheet' type='text/css'>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'></script>
-    <script src='js/jquery.color-RGBa-patch.js'></script>
-    <script src='js/example.js'></script>
+    <script src='/finance_app/views/js/jquery.color-RGBa-patch.js'></script>
+    <script src='/finance_app/views/js/example.js'></script>
     
 </head>
 
@@ -35,16 +35,16 @@
 			</ul>
 
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form">
+				<form class="cd-form" method="post" action="http://localhost/finance_app/account/login">
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<input name="email" class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+						<input name="password" class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -55,7 +55,7 @@
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width" type="submit" value="Login">
+						<input class="full-width" type="submit" name="login_btn" value="Login">
 					</p>
 				</form>
 				
@@ -64,29 +64,54 @@
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
-					<p class="fieldset">
-						<label class="image-replace cd-username" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-						<span class="cd-error-message">Error message here!</span>
-					</p>
+				<form class="cd-form" method="post" action="http://localhost/finance_app/account/register">
+
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-first_name">First Name</label>
+                        <input name="first_name" class="full-width has-padding has-border" id="signup-first_name" type="text" placeholder="First Name">
+                        <span class="cd-error-message">Error message here!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-last_name">Last Name</label>
+                        <input name="last_name" class="full-width has-padding has-border" id="signup-last_name" type="text" placeholder="Last Name">
+                        <span class="cd-error-message">Error message here!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-pnr">Social Security Nr</label>
+                        <input name="pnr" class="full-width has-padding has-border" id="signup-pnr" type="text" placeholder="Social Security Nr">
+                        <span class="cd-error-message">Error message here!</span>
+                    </p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+						<input name="email" class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-bank">Bank</label>
+                        <input name="bank" class="full-width has-padding has-border" id="signup-bank" type="text" placeholder="Bank">
+                        <span class="cd-error-message">Error message here!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <label class="image-replace cd-username" for="signup-account">Account Nr</label>
+                        <input name="account" class="full-width has-padding has-border" id="signup-account" type="text" placeholder="Account Nr">
+                        <span class="cd-error-message">Error message here!</span>
+                    </p>
+
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+						<input name="password" class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace cd-password" for="signup-password">Confirm Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Confirm Password">
+						<input name="re_password" class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Confirm Password">
 						<a href="#0" class="hide-password">Hide</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -124,7 +149,7 @@
 			<a href="#0" class="cd-close-form">Close</a>
 		</div> <!-- cd-user-modal-container -->
 	</div> <!-- cd-user-modal -->
-	        <img class="logo"  src="Logo/logo-lorenum.png"/>
+	        <img class="logo"  src="/finance_app/views/Logo/logo-lorenum.png"/>
         
 
 
@@ -142,6 +167,11 @@
         
 
     <div class="container">
+        <?php //var_dump($data);
+
+        foreach($data as $stock){
+            echo $stock['symbol'];
+        } ?>
 		<ul class="row1">
 			<li id="symbol">SYMBOL</li>
 			<li id="volume">VOLUME</li>
@@ -181,6 +211,6 @@
 	</div>
     </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/main_login_register.js"></script> <!-- Gem jQuery -->
+<script src="/finance_app/views/js/main_login_register.js"></script> <!-- Gem jQuery -->
 </body>
 </html>

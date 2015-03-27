@@ -31,7 +31,7 @@
 	<div class="top">
 
 		<ul id="acc2">
-			<li id="logout">LOGOUT</li><br/>
+			<li id="logout"><a href="http://localhost/finance_app/account/logout" >LOGOUT</a></li><br/>
 			<li id="info">
 			<span id="name_myaccount"><?php  echo $_SESSION['id'] ; ?>Samwise Lorenum</span><br/>
 			<span id="mail_myaccount">samwise@lorenum.com</span><br/>

@@ -2,7 +2,9 @@
 class Home extends Controller{
 
     public function index(){
-        $data = ['test'];
-        $this->view('index', $data);
+        $db = Database::getInstance();
+        $sql = "SELECT * FROM stocks ORDER BY last_change_procent DESC LIMIT 5";
+        $data = $db->query_sql($sql, []);
+        $this->view('start_view', $data);
     }
 }

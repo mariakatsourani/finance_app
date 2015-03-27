@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="reset.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="style3.css" />
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/finance_app/views/css/style3.css" />
 	<meta charset="UTF-8">
-    <script src="js/modernizr.custom.js"></script>
+    <script src="/finance_app/views/js/modernizr.custom.js"></script>
 
 </head>
 <body>	
@@ -37,7 +37,7 @@
 	<div class="top">
 
 		<ul id="acc2">
-			<li id="logout">LOGOUT</li><br/>
+			<li id="logout"><a href="http://localhost/finance_app/account/logout">LOGOUT</a> </li><br/>
 			<li id="info">
 			<span id="name_myaccount">Samwise Lorenum</span><br/>
 			<span id="mail_myaccount">samwise@lorenum.com</span><br/>
@@ -63,6 +63,9 @@
 			<li id="tot">TOTAL</li>
 		</ul>
 		<hr>
+
+        <?php //var_dump($data);
+        echo $data['email'];?>
 	</div>
 
 
@@ -75,6 +78,6 @@
 		</div>	
 	</div>
 </body>
-    <script src="js/classie.js"></script>
-	<script src="js/borderMenu.js"></script>
+    <script src="/finance_app/views/js/classie.js"></script>
+	<script src="/finance_app/views/js/borderMenu.js"></script>
 </html>

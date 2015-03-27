@@ -73,7 +73,7 @@ class User extends Controller{
 				
 			
 				
-				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
+				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "");
 				$showAll = $db->prepare("SELECT * FROM transactions
 				join stocks on transactions.stock_id=stocks.stock_id
 									  WHERE user_id =:user_id");
@@ -91,7 +91,7 @@ class User extends Controller{
 						
 						
 					}*/
-					$this->view("portfolio", $result);
+					$this->view("portfolio_view", $result);
 					
 				} else {
 					echo "fel";

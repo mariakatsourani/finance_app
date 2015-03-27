@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="reset.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="style3.css" />
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/finance_app/views/css/style3.css" />
 	<meta charset="UTF-8">
-    <script src="js/modernizr.custom.js"></script>
+    <script src="/finance_app/views/js/modernizr.custom.js"></script>
 
 </head>
 <body>	
@@ -36,7 +36,7 @@
 	<div class="top">
 
 		<ul id="acc">
-			<li><h5><?php echo $exempelhär['username']?>MYACCOUNT</h5></li>
+			<li><h5><?php //echo $exempelhär['username']?>MYACCOUNT</h5></li>
 			<li><h5>LOGOUT</h5></li>
 		</ul>
 
@@ -82,6 +82,6 @@
 		</div>	
 	</div>
 </body>
-    <script src="js/classie.js"></script>
-	<script src="js/borderMenu.js"></script>
+    <script src="/finance_app/views/js/classie.js"></script>
+	<script src="/finance_app/views/js/borderMenu.js"></script>
 </html>

@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="reset.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="stylesheet" type="text/css" href="style3.css" />
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/finance_app/views/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/finance_app/views/css/style3.css" />
 	<meta charset="UTF-8">
-    <script src="js/modernizr.custom.js"></script>
+    <script src="/finance_app/views/js/modernizr.custom.js"></script>
 
 </head>
 <body>	
@@ -52,11 +52,18 @@
 			<li id="time">TIME</li>
 		</ul>
 		<hr>
+        <?php var_dump($data);
+        foreach($data as $stock){
+            echo "<div>" . $stock['name']. "</div>";
+            echo "<span>" . $stock['last_change'] ."</span>";
+
+        }
+         ?>
 	</div>
 
 
 
 </body>
-    <script src="js/classie.js"></script>
-	<script src="js/borderMenu.js"></script>
+    <script src="/finance_app/views/js/classie.js"></script>
+	<script src="/finance_app/views/js/borderMenu.js"></script>
 </html>

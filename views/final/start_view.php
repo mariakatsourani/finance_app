@@ -86,6 +86,13 @@
 					</p>
 
 					<p class="fieldset">
+						<label class="image-replace cd-password" for="signup-password">Confirm Password</label>
+						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Confirm Password">
+						<a href="#0" class="hide-password">Hide</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
 						<input type="checkbox" id="accept-terms">
 						<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
 					</p>

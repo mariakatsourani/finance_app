@@ -36,7 +36,7 @@
 	<div class="top">
 
 		<ul id="acc">
-			<li><h5>MYACCOUNT</h5></li>
+			<li><h5><?php echo $exempelhär['username']?>MYACCOUNT</h5></li>
 			<li><h5>LOGOUT</h5></li>
 		</ul>
 

@@ -5,7 +5,8 @@ class Account extends Controller{
     protected $errors;
 
     public function index(){
-
+    
+		header("location: /finance_app/views/login");
     }
 
     public function login() {
@@ -21,45 +22,46 @@ class Account extends Controller{
             $stm2 = $db->prepare('SELECT * FROM users WHERE email = :email');
             $stm2->bindParam(":email", $email, PDO::PARAM_STR);
                 if($stm2->execute()) {
-                $result = $stm2->fetchAll(PDO::FETCH_ASSOC);
+                	$result = $stm2->fetchAll(PDO::FETCH_ASSOC);
                 
-                // if no user is found
-                if($stm2->rowCount()==0){
-                    $msg = "Wrong user or password";
-                    echo $msg;
-                }
+	                // if no user is found
+	                if($stm2->rowCount()==0){
+	                    $msg = "Wrong user or password";
+	                    $this->view("login", $msg)  ; 
+	                }
                 
                 // if one is found
                 else {
-                    foreach ($result as $row) {
-                        $hash = $row['password'];
+                  	$row = $result[0];
+                        //$hash = $row['password'];
                         //var_dump(password_verify($password, $hash)) ;
                         //echo $password . "<br>" . $hash;
-                        if (password_verify($password, $hash)) {
-                            session_start();
-                            $_SESSION["status"] = "customers_inloggad";
+                        //if (password_verify($password, $hash)) {
+                            //$_SESSION["status"] == "inloggad";
                             $_SESSION["id"] = $row["user_id"];
                             $_SESSION["email"] = $row["email"];
+                            $_SESSION["first_name"] = $row["first_name"];
                             
-                            header("location: /finance_app/views/portfolio.php");
-         
-                        }
-                        else {
-                            $msg = "Wrong password";
-                            echo $msg ; 
-                            var_dump(password_verify($password, $hash));
-                        }
-                    }
+                            
+                            header("location: /finance_app/user/viewPortfolio");
+                           
+                        //}
+                        //else {
+                          //  $msg = "Wrong password";
+                            //$this->view("login", $msg)  ; 
+                            //var_dump(password_verify($password, $hash));
+                       // }
+                   
                 }
             }
             else {
                 
                $msg = "Wrong user or password";
-               echo $msg ;
+               $this->view("login", $msg)  ; 
             }
-            if (!isset($_SESSION['status']) == "inloggad") {
-            	header("location: /finance_app/views/index.php");
-            }
+           // if (!isset($_SESSION['status'])) {
+            	//header("location: /finance_app/views/index.php");
+            //}
         }
     }
 

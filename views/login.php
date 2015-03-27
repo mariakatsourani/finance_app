@@ -5,7 +5,11 @@
 	    <title></title>
 	</head>
 	<body>
-	
+	<?php 
+		
+		echo $data;
+		
+	?>
 		<form action="/finance_app/account/login" method="post">
 			<input type="text" name="email" placeholder="email" />
 			<input type="password" name="password" placeholder="password" />

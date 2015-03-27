@@ -1,7 +1,7 @@
 <?php
 //initialize app
 
-
+session_start();
 //check if class exists in core or controllers folders and if it does include the file
 function autoloader($class) {
     if(file_exists('../finance_app/core/' . $class . '.php')){

@@ -8,3 +8,4 @@ class Home extends Controller{
         $this->view('start_view', $data);
     }
 }
+

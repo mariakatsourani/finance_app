@@ -22,12 +22,12 @@
 			<nav id="bt-menu" class="bt-menu">
 				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
 				<ul>
-					<li id="startMenu"><a href="start_view.php" class="bt-icon icon-user-outline">Start</a></li>
-                    <li id="nasdaqMenu"><a href="nasdaq_view.php" class="bt-icon icon-user-outline">Nasdaq</a></li>
-					<li><a href="portfolio_view.php" class="bt-icon icon-sun">Portfolio</a></li>
-					<li><a href="my_account_view.php" class="bt-icon icon-windows">My account</a></li>
-                    <li id="aboutMenu"><a href="about_view.php" class="bt-icon icon-windows">About us</a></li>
-					<li><a href="contact_view.php" class="bt-icon icon-bubble">Contact</a></li>
+					<li id="startMenu"><a href="http://localhost/finance_app/" class="bt-icon icon-user-outline">Start</a></li>
+                    <li id="nasdaqMenu"><a href="http://localhost/finance_app/stock/" class="bt-icon icon-user-outline">Nasdaq</a></li>
+					<li><a href="http://localhost/finance_app/user/viewPortfolio" class="bt-icon icon-sun">Portfolio</a></li>
+					<li><a href="http://localhost/finance_app/account" class="bt-icon icon-windows">My account</a></li>
+                    <li id="aboutMenu"><a href="http://localhost/finance_app/home/about" class="bt-icon icon-windows">About us</a></li>
+					<li><a href="http://localhost/finance_app/home/contact" class="bt-icon icon-bubble">Contact</a></li>
 				</ul>
 			</nav>
     </div><!-- /container -->
@@ -36,8 +36,8 @@
 	<div class="top">
 
 		<ul id="acc">
-			<li><h5><?php //echo $exempelhär['username']?>MYACCOUNT</h5></li>
-			<li><h5>LOGOUT</h5></li>
+			<li id="myAccount"><h5><?php echo $data['email'];?>MYACCOUNT</h5></li>
+			<li id="logout"><a href="http://localhost/finance_app/account/logout">LOGOUT</a> </li><br/>
 		</ul>
 
 	</div>
@@ -53,34 +53,49 @@
 	<div class="container">
 	
 		<ul class="inlineOver">
-			<li>NAME</li>
-			<li>PRICE</li>
-			<li>PRICE - TODAY</li>
-			<li>RETURN</li>
-			<li>CHANGE</li>
-			<li>AMOUNT</li>
+			<li id="nameOver">NAME</li>
+			<li id="priceOver">PRICE</li>
+			<li id="priceTodayOver">PRICE - TODAY</li>
+			<li id="returnOver">RETURN</li>
+			<li id="changeOver">CHANGE</li>
+			<li id="amountOver">AMOUNT</li>
 		</ul>
-		<hr>
+		<hr id="portfolioHr">
+	<form method="" action="">	
+
+	<!--- change the dummy text to this; 
+
+	
+  <?php //var_dump($data);
+        foreach($data as $stock){
+            echo  "<div id='stockName'>" . $stock['symbol'] . "</div>" . "<div id='lastProcent'>" . $stock['last_change_procent']. "</div>" . "<div id='lastChangeProcent'>" . $stock['last_change']. "</div>" . "<div id='available'>" . $stock['available_for_shop']. "<div id='miniSell'>" . "<input id='miniSell' type='submit' value='SELL'>" . "</div>" . "</div>";
+            //echo "<span id='stocks'>" . $stock['last_change'] ."</span>";
+
+        }
+         ?>
+
+dont change the id names, just change the $stock to what you need and delete the one beneath
+	-->
 		<ul class="inlineUnder">
-			<li>GOOGLE</li>
-			<li>10,77</li>
-			<li>11,07</li>
-			<li>73 SEK</li>
-			<li>0,08%</li>
-			<li>10</li>
+			<li id="namePortfolio">GOOGLE</li>
+			<li id="pricePortfolio">10,77</li>
+			<li id="priceTodayPortfolio">11,07</li>
+			<li id="returnPortfolio">73 SEK</li>
+			<li id="changePortfolio">0,08%</li>
+			<li id="amountPortfolio">10</li><input id="miniSell" type="submit" value="SELL">
 		</ul>
+	</form>
 	</div>
 
-
-
-	<div class="footer">
+	<!---<div class="footer">
 		<div class="footerButtons">
 			<form method="" action="">
-				<input id="buy" type="submit" value="BUY">
-				<input id="sell"type="submit" value="SELL">
+				<input id="buy" type="submit" value="BUY"> not needed here
+
+				<input id="sell"type="submit" value="SELL"> 
 			</form>
 		</div>	
-	</div>
+	</div>-->
 </body>
     <script src="/finance_app/views/js/classie.js"></script>
 	<script src="/finance_app/views/js/borderMenu.js"></script>

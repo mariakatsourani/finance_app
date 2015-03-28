@@ -20,7 +20,7 @@ class Account extends Controller{
         // if login button is pushed
         if (isset($_POST["login_btn"])) {
 
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "");
+            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
             $stm2 = $db->prepare('SELECT * FROM users WHERE email = :email');
             $stm2->bindParam(":email", $email, PDO::PARAM_STR);
                 if($stm2->execute()) {
@@ -99,7 +99,7 @@ class Account extends Controller{
 
 
             // connect to db and add new user
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "") ;
+            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root") ;
             $stm = $db->prepare("INSERT INTO users (email, password, first_name,
                                   last_name, pnr, actual_balance, virtual_balance, bank, account_number)
                                   VALUES (:email, :password, :first_name, :last_name,
@@ -117,7 +117,7 @@ class Account extends Controller{
             // if db insert is successful, send user to portfolio
             if($stm->execute()) {
 
-                header("location: /finance_app/views/login.php");
+                header("location: /finance_app/");
 
             }
             // if not, tell that user already exists

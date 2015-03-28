@@ -167,11 +167,6 @@
         
 
     <div class="container">
-        <?php //var_dump($data);
-
-        foreach($data as $stock){
-            echo $stock['symbol'];
-        } ?>
 		<ul class="row1">
 			<li id="symbol">SYMBOL</li>
 			<li id="volume">VOLUME</li>
@@ -179,34 +174,16 @@
 			<li id="changeSek">CHANGE SEK (%)</li>
 		</ul>
 		<ul class="row2">
-			<li>BAC</li>
-			<li>93,632,718</li>
-			<li>SEK 280</li>
-			<li>-SEK 0,06(-0,360%)</li>
-		</ul>
-        <ul class="row2">
-			<li>PBR</li>
-			<li>51,284,568</li>
-			<li>SEK 171</li>
-			<li>-SEK 0,06(-0,360%)</li>
-		</ul>
-        <ul class="row2">
-			<li>AXP</li>
-			<li>34,874,386</li>
-			<li>SEK 989</li>
-			<li>-SEK 0,06(-0,360%)</li>
-		</ul>
-        <ul class="row2">
-			<li>GER</li>
-			<li>33,076,157</li>
-			<li>SEK 398</li>
-			<li>-SEK 0,06(-0,360%)</li>
-		</ul>
-        <ul class="row2">
-			<li>SDR</li>
-			<li>31,958,366</li>
-			<li>SEK 536</li>
-			<li>-SEK 0,06(-0,360%)</li>
+			<li>
+
+				<?php
+
+        foreach($data as $stock){
+            echo "<div id='stockName'>" . $stock['symbol'] . "</div>" . "<div id='available'>" . $stock['available_for_shop'] . "</div>" . "<div id='lastChangeProcent'>" . $stock['last_change'] . "</div>" . "<div id='lastProcent'>" . $stock['last_change_procent'] . "</div>" ;
+       	} ?>
+
+       		</li>
+
 		</ul>
 	</div>
     </div>

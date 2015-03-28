@@ -56,7 +56,7 @@ class User extends Controller{
 				$user_id = $_SESSION["user_id"]; 
 				$stock_id = $_POST["stock_id"];// get the value from the template by a hidden input
 				
-				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "");
+				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
 				$sell = $db->prepare('UPDATE transactions SET price = :price, stock_amount = (stock_amount-:stock_amount), 
 									  date = NOW(), total_price = (total_price-:total_price)
 									  WHERE user_id =:user_id AND stock_id =:stock_id');
@@ -73,7 +73,7 @@ class User extends Controller{
 				
 			
 				
-				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "");
+				$db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
 				$showAll = $db->prepare("SELECT * FROM transactions
 				join stocks on transactions.stock_id=stocks.stock_id
 									  WHERE user_id =:user_id");

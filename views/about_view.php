@@ -23,12 +23,12 @@
 			<nav id="bt-menu" class="bt-menu">
 				<a href="#" class="bt-menu-trigger"><span>Menu</span></a>
 				<ul>
-					<li id="startMenu"><a href="start_view.php" class="bt-icon icon-user-outline">Start</a></li>
-                    <li id="nasdaqMenu"><a href="nasdaq_view.php" class="bt-icon icon-user-outline">Nasdaq</a></li>
-					<li><a href="portfolio_view.php" class="bt-icon icon-sun">Portfolio</a></li>
-					<li><a href="my_account_view.php" class="bt-icon icon-windows">My account</a></li>
-                    <li id="aboutMenu"><a href="about_view.php" class="bt-icon icon-windows">About us</a></li>
-					<li><a href="contact_view.php" class="bt-icon icon-bubble">Contact</a></li>
+					<li id="startMenu"><a href="http://localhost/finance_app/" class="bt-icon icon-user-outline">Start</a></li>
+                    <li id="nasdaqMenu"><a href="http://localhost/finance_app/stock/" class="bt-icon icon-user-outline">Nasdaq</a></li>
+					<li><a href="http://localhost/finance_app/user/viewPortfolio" class="bt-icon icon-sun">Portfolio</a></li>
+					<li><a href="http://localhost/finance_app/account" class="bt-icon icon-windows">My account</a></li>
+                    <li id="aboutMenu"><a href="http://localhost/finance_app/home/about" class="bt-icon icon-windows">About us</a></li>
+					<li><a href="http://localhost/finance_app/home/contact" class="bt-icon icon-bubble">Contact</a></li>
 				</ul>
 			</nav>
     </div><!-- /container -->
@@ -38,7 +38,7 @@
 
 		<ul id="acc">
 			<li><h5>MYACCOUNT</h5></li>
-			<li><h5>LOGOUT</h5></li>
+			<li id="logout"><a href="http://localhost/finance_app/account/logout">LOGOUT</a> </li><br/>
 		</ul>
 
 	</div>

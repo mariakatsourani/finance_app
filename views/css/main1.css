@@ -40,6 +40,7 @@ body {
 
 .row2 {
 	font-size: 20px;
+  margin-left: -35px;
 }
 
 .row1 ul{
@@ -95,16 +96,20 @@ body {
     color: white;
 }
 
+#symbol {
+    margin-left: -5px;
+}
+
 #volume {
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 #lastPrice {
-    margin-left: -20px;
+    margin-left: 85px;
 }
 
 #changeSek {
-    margin-left: 40px;
+    margin-left: 30px;
 }
 /* -------------------------------- 
 
@@ -604,9 +609,39 @@ xsigin/signup popup
 
 hr {
     border: 0;
-    width: 80%;
+    width: 85%;
     background-color: #99cccc;
     height: 10px;
-    margin-left: 100px;
+    margin-left: 90px;
     margin-bottom: 60px;
+}
+
+
+#stockName {
+  margin-left: 25px;
+  margin-top: 15px;
+  
+}
+
+#lastProcent {
+  margin-left: 230px;
+  margin-top: -20px;
+
+  
+}
+
+#lastChangeProcent {
+  margin-left: 500px;
+  margin-top: -16px;
+  
+  
+
+}
+
+#available {
+  margin-left: 735px;
+  margin-top: -20px;
+  
+
+  
 }

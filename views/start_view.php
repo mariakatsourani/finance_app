@@ -122,7 +122,7 @@
 					</p>
 
 					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Create account">
+						<input name = "singup_btn" class="full-width has-padding" type="submit" value="Create account">
 					</p>
 				</form>
 
@@ -169,18 +169,21 @@
     <div class="container">
 		<ul class="row1">
 			<li id="symbol">SYMBOL</li>
-			<li id="volume">VOLUME</li>
+			<li id="changeSek">CHANGE (%)</li>
 			<li id="lastPrice">LAST PRICE</li>
-			<li id="changeSek">CHANGE SEK (%)</li>
+			<li id="volume">VOLUME</li>
 		</ul>
 		<ul class="row2">
 			<li>
 
 				<?php
-
-        foreach($data as $stock){
-            echo "<div id='stockName'>" . $stock['symbol'] . "</div>" . "<div id='available'>" . $stock['available_for_shop'] . "</div>" . "<div id='lastChangeProcent'>" . $stock['last_change'] . "</div>" . "<div id='lastProcent'>" . $stock['last_change_procent'] . "</div>" ;
-       	} ?>
+                foreach($data as $stock){
+                    echo "<div id='stockName'>" . $stock['symbol'] . "</div>" .
+                            "<div id='available'>" . $stock['available_for_shop'] . "</div>" .
+                            "<div id='lastChangeProcent'>" . $stock['last_price'] . "</div>" .
+                            "<div id='lastProcent'>" . $stock['last_change_procent'] . "</div>" ;
+                }
+                ?>
 
        		</li>
 

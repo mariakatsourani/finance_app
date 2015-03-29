@@ -24,7 +24,7 @@
 				<ul>
 					<li id="startMenu"><a href="http://localhost/finance_app/" class="bt-icon icon-user-outline">Start</a></li>
                     <li id="nasdaqMenu"><a href="http://localhost/finance_app/stock/" class="bt-icon icon-user-outline">Nasdaq</a></li>
-					<li><a href="http://localhost/finance_app/user/viewPortfolio" class="bt-icon icon-sun">Portfolio</a></li>
+					<li><a href="http://localhost/finance_app/user/portfolio" class="bt-icon icon-sun">Portfolio</a></li>
 					<li><a href="http://localhost/finance_app/account" class="bt-icon icon-windows">My account</a></li>
                     <li id="aboutMenu"><a href="http://localhost/finance_app/home/about" class="bt-icon icon-windows">About us</a></li>
 					<li><a href="http://localhost/finance_app/home/contact" class="bt-icon icon-bubble">Contact</a></li>
@@ -36,7 +36,7 @@
 	<div class="top">
 
 		<ul id="acc">
-			<li id="myAccount"><h5><?php echo $data['email'];?>MYACCOUNT</h5></li>
+			<li id="myAccount"><h5><a href="http://localhost/finance_app/account">MYACCOUNT</a></h5></li>
 			<li id="logout"><a href="http://localhost/finance_app/account/logout">LOGOUT</a> </li><br/>
 		</ul>
 
@@ -61,30 +61,28 @@
 			<li id="amountOver">AMOUNT</li>
 		</ul>
 		<hr id="portfolioHr">
-	<form method="" action="">	
 
-	<!--- change the dummy text to this; 
 
-	
-  <?php //var_dump($data);
-        foreach($data as $stock){
-            echo  "<div id='stockName'>" . $stock['symbol'] . "</div>" . "<div id='lastProcent'>" . $stock['last_change_procent']. "</div>" . "<div id='lastChangeProcent'>" . $stock['last_change']. "</div>" . "<div id='available'>" . $stock['available_for_shop']. "<div id='miniSell'>" . "<input id='miniSell' type='submit' value='SELL'>" . "</div>" . "</div>";
-            //echo "<span id='stocks'>" . $stock['last_change'] ."</span>";
+        <?php
+        if($data):
+            foreach ($data as $stock):?>
+            <ul class="inlineUnder">
+                <li id="namePortfolio"><?php echo $stock['symbol'] ?></li>
+                <li id="pricePortfolio"><?php echo abs($stock['price']) ?></li>
+                <li id="priceTodayPortfolio"><?php echo $stock['last_price'] ?></li>
+                <li id="returnPortfolio"><?php echo $stock['last_price'] - abs($stock['price']) ?></li>
+                <li id="changePortfolio"><?php echo $stock['last_change'] ?></li>
+                <li id="amountPortfolio"><?php echo $stock['total_stocks'] ?></li>
+                <form method="post" action="http://localhost/finance_app/user/sell/" class="amount_form">
+                    <input name="price" type="text" class="" placeholder="Price"/>
+                    <input name="stock_amount" type="text" class="stock_amount" placeholder="Amount"/>
+                    <input name="sell" id="miniSell" type="submit" value="SELL">
+                    <input name="stock_id" type="hidden" value="<?php echo $stock['stock_id'] ?>" />
+                </form>
+            </ul>
+        <?php endforeach;
+        endif?>
 
-        }
-         ?>
-
-dont change the id names, just change the $stock to what you need and delete the one beneath
-	-->
-		<ul class="inlineUnder">
-			<li id="namePortfolio">GOOGLE</li>
-			<li id="pricePortfolio">10,77</li>
-			<li id="priceTodayPortfolio">11,07</li>
-			<li id="returnPortfolio">73 SEK</li>
-			<li id="changePortfolio">0,08%</li>
-			<li id="amountPortfolio">10</li><input id="miniSell" type="submit" value="SELL">
-		</ul>
-	</form>
 	</div>
 
 	<!---<div class="footer">

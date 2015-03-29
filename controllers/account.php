@@ -5,68 +5,47 @@ class Account extends Controller{
     protected $errors;
 
     public function index(){
-        $db = Database::getInstance();
-        $data = $db->query_sql("SELECT * FROM users WHERE user_id=:user_id",
+        if(!$this->isLoggedin()){
+            header('location: http://localhost/finance_app/');
+        }
+        $data = $this->db->query_sql("SELECT * FROM users WHERE user_id=:user_id",
                         array('user_id' => $_SESSION['id']));
 		$this->view('my_account_view', $data[0]);
     }
 
     public function login() {
-
         // get variables
-        $password = $_POST['password'];
-        $email = $_POST['email'];
+        $password = strip_tags($_POST['password']);
+        $email = strip_tags($_POST['email']);
         
         // if login button is pushed
-        if (isset($_POST["login_btn"])) {
+        if ( (isset($_POST["login_btn"])) && (!empty($_POST['email'])) && (!empty($_POST['password']))) {
 
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root");
-            $stm2 = $db->prepare('SELECT * FROM users WHERE email = :email');
-            $stm2->bindParam(":email", $email, PDO::PARAM_STR);
-                if($stm2->execute()) {
-                	$result = $stm2->fetchAll(PDO::FETCH_ASSOC);
-                
-	                // if no user is found
-	                if($stm2->rowCount()==0){
-	                    $msg = "Wrong user or password";
-	                    $this->view("login", $msg)  ; 
-	                }
-                
-                // if one is found
-                else {
-                  	$row = $result[0];
-                        //$hash = $row['password'];
-                        //var_dump(password_verify($password, $hash)) ;
-                        //echo $password . "<br>" . $hash;
-                        //if (password_verify($password, $hash)) {
-                            //$_SESSION["status"] == "inloggad";
-                            $_SESSION["id"] = $row["user_id"];
-                            $_SESSION["email"] = $row["email"];
-                            $_SESSION["first_name"] = $row["first_name"];
-                            
-                            
-                            header("location: /finance_app/user/viewPortfolio");
-                           
-                        //}
-                        //else {
-                          //  $msg = "Wrong password";
-                            //$this->view("login", $msg)  ; 
-                            //var_dump(password_verify($password, $hash));
-                       // }
-                   
+            $result = $this->db->query_sql('SELECT * FROM users WHERE email = :email',
+                array('email' => $email));
+            if(!$result){// if no user is found
+                  header("location: /finance_app/");
+//                $msg = "Wrong user or password";
+//                echo $msg;
+            }else{// if one is found
+                $row = $result[0];
+                $hash = $row['password'];
+                //var_dump(password_verify($password, $hash)) ;
+                //echo $password . "<br>" . $hash;
+                if (password_verify($password, $hash)) {
+                    $_SESSION["status"] = "inloggad";
+                    $_SESSION["id"] = $row["user_id"];
+                    header("location: /finance_app/user/portfolio");
+                }else{
+                    header("location: /finance_app/");
+//                    $msg = "Wrong password";
+//                    echo $msg;
                 }
             }
-            else {
-                
-               $msg = "Wrong user or password";
-               $this->view("login", $msg)  ; 
-            }
-           // if (!isset($_SESSION['status'])) {
-            	//header("location: /finance_app/views/index.php");
-            //}
+        }else{
+            header("location: /finance_app/");
         }
     }
-
 
     public function logout() {
         session_start();
@@ -78,58 +57,56 @@ class Account extends Controller{
     }
 
     public function register() {
-        $password = $_POST['password'];
-        $email = $_POST['email'];
+        $password = strip_tags($_POST['password']);
+        $email = strip_tags($_POST['email']);
 
         // if user pushed register
+        if($_POST['singup_btn']){
 
-        // get variables
-        $email = $this->validateEmail($_POST['email']);
-        //----------$password = $this->validatePasswordMatch($_POST['password'], $_POST['re_password']);
-        $hashPass = password_hash($password, PASSWORD_BCRYPT);
-
-        $last_name = $_POST['last_name'];
-        $first_name = $_POST['first_name'];
-        $bank = $_POST['bank'];
-        $account = $_POST['account'];
-        $pnr = $_POST['pnr'];
-        $balance = 50000;
-        // check if everything is valid
-        if ( $email && $password ) {
-
-
-            // connect to db and add new user
-            $db = new PDO("mysql:host=localhost;dbname=finance_app", "root", "root") ;
-            $stm = $db->prepare("INSERT INTO users (email, password, first_name,
-                                  last_name, pnr, actual_balance, virtual_balance, bank, account_number)
+            // get variables
+            $email = $this->validateEmail($email);
+            if($this->validatePasswordMatch($password, strip_tags($_POST['re_password']))){
+                $hashPass = password_hash($password, PASSWORD_BCRYPT);
+            }
+            $last_name = strip_tags($_POST['last_name']);
+            $first_name = strip_tags($_POST['first_name']);
+            $bank = strip_tags($_POST['bank']);
+            $account = strip_tags($_POST['account']);
+            $pnr = strip_tags($_POST['pnr']);
+            $balance = 50000;
+            // check if everything is valid
+            if ( $email && $password ) {
+                // connect to db and add new user
+                $sql = 'INSERT INTO users (email, password, first_name,
+                                  last_name, pnr, bank, account_number)
                                   VALUES (:email, :password, :first_name, :last_name,
-                                  :pnr, :balance, :balance, :bank, :account) ");
-            $stm->bindParam(":email", $email, PDO::PARAM_STR);
-            $stm->bindParam(":password", $hashPass, PDO::PARAM_STR);
-            $stm->bindParam(":first_name", $first_name, PDO::PARAM_STR);
-            $stm->bindParam(":last_name", $last_name, PDO::PARAM_STR);
-            $stm->bindParam(":pnr", $pnr, PDO::PARAM_INT);
-            $stm->bindParam(":balance", $balance, PDO::PARAM_INT);
-            $stm->bindParam(":balance", $balance, PDO::PARAM_INT);
-            $stm->bindParam(":bank", $bank, PDO::PARAM_STR);
-            $stm->bindParam(":account", $account, PDO::PARAM_INT);
-
-            // if db insert is successful, send user to portfolio
-            if($stm->execute()) {
-
+                                  :pnr, :bank, :account_number)';
+                $params = array(
+                    "email" => $email,
+                    "password" => $hashPass,
+                    "first_name" => $first_name,
+                    "last_name" => $last_name,
+                    "pnr" => $pnr,
+                    "bank" => $bank,
+                    "account_number" => $account
+                );
+                //if db insert is successful, send user to portfolio
+                $this->db->query_sql($sql, $params);
                 header("location: /finance_app/");
-
+//                if($this->db->query_sql($sql, $params)) {
+//                    header("location: /finance_app/");
+//                }
+//                // if not, tell that user already exists
+//                else {
+//                    $msg = "User already exists";
+//                    echo $msg;
+//                }
             }
-            // if not, tell that user already exists
-            else {
-               $msg = "User already exists";
-               
-               return $msg;
-
-            }
-        } 
-
+        }else{
+            header("location: /finance_app/");
         }
+
+    }
 
 
     // Validation methods for registration and login input.
@@ -157,9 +134,10 @@ class Account extends Controller{
         if ( strlen($password) <= 5 ) {
             $this->errors[] = 'Password must be at least 6 characters';
             return false;
+        }else{
+            return true;
         }
 
-        return $password;
     }
 
     protected function validatePasswordMatch($password, $re_password) {

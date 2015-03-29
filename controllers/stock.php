@@ -1,11 +1,16 @@
 <?php
 class Stock extends Controller{
+
     public function index(){
-        $db = Database::getInstance();
+        if(!$this->isLoggedin()){
+            header('location: /finance_app/');
+        }
+
         $sql = "SELECT * FROM stocks";
-        $data = $db->query_sql($sql, []);
+        $data = $this->db->query_sql($sql, []);
         $this->view('nasdaq_view', $data);
     }
+
     /*public function show($symbol){
         $db = Database::getInstance();
         $sql = "SELECT * FROM stocks WHERE symbol=:symbol";
@@ -15,6 +20,7 @@ class Stock extends Controller{
         $data = $stock[0];
         $this->view('nasdaq_view', $data);
     }*/
+
     public function insert()
     {
         $db = Database::getInstance();

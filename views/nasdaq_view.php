@@ -25,7 +25,7 @@
 				<ul>
 					<li id="startMenu"><a href="http://localhost/finance_app/" class="bt-icon icon-user-outline">Start</a></li>
                     <li id="nasdaqMenu"><a href="http://localhost/finance_app/stock/" class="bt-icon icon-user-outline">Nasdaq</a></li>
-					<li><a href="http://localhost/finance_app/user/viewPortfolio" class="bt-icon icon-sun">Portfolio</a></li>
+					<li><a href="http://localhost/finance_app/user/portfolio" class="bt-icon icon-sun">Portfolio</a></li>
 					<li><a href="http://localhost/finance_app/account" class="bt-icon icon-windows">My account</a></li>
                     <li id="aboutMenu"><a href="http://localhost/finance_app/home/about" class="bt-icon icon-windows">About us</a></li>
 					<li><a href="http://localhost/finance_app/home/contact" class="bt-icon icon-bubble">Contact</a></li>
@@ -38,7 +38,7 @@
 	<div class="top">
 
 		<ul id="acc">
-			<li id="myAccount"><h5><?php //echo $exempelhär['username']?>MYACCOUNT</h5></li>
+			<li id="myAccount"><h5><a href="http://localhost/finance_app/account">MYACCOUNT</a> </h5></li>
 			<li id="logout"><a href="http://localhost/finance_app/account/logout">LOGOUT</a> </li><br/>
 		</ul>
 
@@ -63,12 +63,23 @@
 		<hr>
 		
         <?php //var_dump($data);
-        foreach($data as $stock){
-            echo  "<div id='stockName'>" . $stock['symbol'] . "</div>" . "<div id='lastProcent'>" . $stock['last_change_procent']. "</div>" . "<div id='lastChangeProcent'>" . $stock['last_change']. "</div>" . "<div id='available'>" . $stock['available_for_shop']. "<div id='miniBuy'>" . "<input id='miniBuy' type='submit' value='BUY'>" . "</div>" . "</div>";
-            //echo "<span id='stocks'>" . $stock['last_change'] ."</span>";
+        echo "<div id='allStocks'>";
+        foreach($data as $stock): ?>
 
-        }
-         ?>
+            <div id='stockName'><?php echo $stock['symbol'] ?> </div>
+            <div id='lastProcent'><?php echo $stock['last_change_procent'] ?></div>
+            <div id='lastChangeProcent'><?php echo $stock['last_price'] ?></div>
+            <div id='available'><?php echo $stock['available_for_shop'] ?></div>
+
+            <form method="post" action="http://localhost/finance_app/user/shop/" class="amount_form">
+                <input class='stock_amount' name='stock_amount' type='test' placeholder="Amount"/>
+                <input name="shop" id='miniBuy' type='submit' value='BUY'/>
+                <input name="stock_id" type="hidden" value="<?php echo $stock['stock_id']?>" />
+            </form>
+
+    <?php endforeach;
+        echo "</div>";
+        ?>
     
 	</div>
 

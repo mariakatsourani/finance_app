@@ -25,7 +25,7 @@
 				<ul>
 					<li id="startMenu"><a href="http://localhost/finance_app/" class="bt-icon icon-user-outline">Start</a></li>
                     <li id="nasdaqMenu"><a href="http://localhost/finance_app/stock/" class="bt-icon icon-user-outline">Nasdaq</a></li>
-					<li><a href="http://localhost/finance_app/user/viewPortfolio" class="bt-icon icon-sun">Portfolio</a></li>
+					<li><a href="http://localhost/finance_app/user/portfolio" class="bt-icon icon-sun">Portfolio</a></li>
 					<li><a href="http://localhost/finance_app/account" class="bt-icon icon-windows">My account</a></li>
                     <li id="aboutMenu"><a href="http://localhost/finance_app/home/about" class="bt-icon icon-windows">About us</a></li>
 					<li><a href="http://localhost/finance_app/home/contact" class="bt-icon icon-bubble">Contact</a></li>
@@ -78,11 +78,10 @@
 
 	<div class="footer">
 		<div class="footerButtons">
-			<form method="" action="">
-			<input id="inputfield" type="text" placeholder="AMOUNT">
-				<input id="deposit" type="submit" value="DEPOSIT">
-				<input id="withdraw" type="submit" value="WITHDRAW">
-				
+			<form method="post" action="http://localhost/finance_app/user/manageBalance">
+			    <input name="amount" id="inputfield" type="text" placeholder="AMOUNT"/>
+                <input name="deposit" id="deposit" type="submit" value="DEPOSIT"/>
+				<input name="withdraw" id="withdraw" type="submit" value="WITHDRAW"/>
 			</form>
 		</div>	
 	</div>

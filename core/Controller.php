@@ -17,19 +17,28 @@ class Controller {
     }
 
     protected function getUser(){
-        //if($this->isLoggedin()){
+        if($this->isLoggedin()){
             $db = Database::getInstance();
             $result = $db->query_sql('SELECT * FROM users WHERE user_id=:current_user',
                                         array('current_user' => $_SESSION['id']));
             return $result[0];
-        /*}else{
+        }else{
             echo "not in";
             return false;
-        }*/
+        }
     }
 
     protected function isLoggedin(){
-        return (isset($_SESSION['status']) ? true : false);
+        return (($_SESSION['status'] == 'inloggad') ? true : false);
+    }
+
+    protected function onedimensionalArray($array){
+        foreach ($array as $item){
+            foreach($item as $value){
+                $new_array[] = $value;
+            }
+        }
+        return $new_array;
     }
 
 }

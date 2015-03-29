@@ -7,7 +7,7 @@ class Database { //to use Database class: $db = Database::getInstance();
     private function __construct(){//private constructor to prevent multiple db objects
         $dsn = 'mysql:dbname=finance_app;host=localhost';
         $user = 'root';
-        $password = 'root';
+        $password = '';
         try {
             $this->connection = new PDO($dsn, $user, $password);
         } catch (PDOException $e) {
@@ -42,7 +42,7 @@ class Database { //to use Database class: $db = Database::getInstance();
         foreach($params as $key => &$value){ //pass $value as a reference to the array item
             $queryStm->bindParam($key, $value);
         }
-        $this->checkStmSuccess($queryStm);
+        if ($this->checkStmSuccess($queryStm)){}
         $result = $queryStm->fetchAll(PDO::FETCH_ASSOC);
         //var_dump($result);
         return $result;

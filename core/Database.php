@@ -7,7 +7,7 @@ class Database { //to use Database class: $db = Database::getInstance();
     private function __construct(){//private constructor to prevent multiple db objects
         $dsn = 'mysql:dbname=finance_app;host=localhost';
         $user = 'root';
-        $password = 'root';
+        $password = '';
         try {
             $this->connection = new PDO($dsn, $user, $password);
         } catch (PDOException $e) {

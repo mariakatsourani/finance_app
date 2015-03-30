@@ -98,7 +98,7 @@ class User extends Controller{
             //get total number of owned stocks
             $total_stocks = $this->db->query_sql('SELECT total_stocks FROM users_stocks
                                                   WHERE user_id=:user_id AND stock_id=:stock_id',
-                                                  array('user_id' => $user_id, 'stock_id' => $stock_id));
+                array('user_id' => $user_id, 'stock_id' => $stock_id));
             if(($stock_amount <= $total_stocks[0]['total_stocks']) && ($stock_amount > 0)){
                 var_dump($price, $stock_amount, $total_price, $stock_id);
                 //insert transaction
@@ -123,7 +123,7 @@ class User extends Controller{
                 //if user sold all the stocks delete entry from users_stocks
                 $result = $this->db->query_sql('SELECT total_stocks FROM users_stocks
                                       WHERE user_id=:user_id AND stock_id=:stock_id',
-                                      array('user_id' => $user_id, 'stock_id' => $stock_id));
+                    array('user_id' => $user_id, 'stock_id' => $stock_id));
                 if($result[0]['total_stocks'] - $stock_amount == 0){
                     $deleteStock = 'DELETE FROM users_stocks
                                     WHERE user_id =:user_id AND stock_id = :stock_id';
@@ -184,7 +184,7 @@ class User extends Controller{
             $stocks = $this->onedimensionalArray($ownedStockIds);
 
             foreach($stocks as $id){
-                $getInfoOwned = 'SELECT s.stock_id, s.symbol, t.price, s.last_price, s.last_change, us.total_stocks
+                $getInfoOwned = 'SELECT s.stock_id, s.symbol, t.price, s.last_price, s.last_change_procent, us.total_stocks
                             FROM transactions AS t
                             JOIN users_stocks AS us ON t.stock_id = us.stock_id
                             JOIN stocks AS s ON t.stock_id = s.stock_id

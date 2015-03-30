@@ -71,7 +71,7 @@
                 <li id="pricePortfolio"><?php echo abs($stock['price']) ?></li>
                 <li id="priceTodayPortfolio"><?php echo $stock['last_price'] ?></li>
                 <li id="returnPortfolio"><?php echo $stock['last_price'] - abs($stock['price']) ?></li>
-                <li id="changePortfolio"><?php echo $stock['last_change'] ?></li>
+                <li id="changePortfolio"><?php echo $stock['last_change_procent'] ?></li>
                 <li id="amountPortfolio"><?php echo $stock['total_stocks'] ?></li>
                 <div id="portfolioInputs">
 	                <form method="post" action="http://localhost/finance_app/user/sell/" class="amount_form">

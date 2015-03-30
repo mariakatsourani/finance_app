@@ -67,7 +67,7 @@
 
 		<ul class="inlineUnder">
 			<li id="actualBalance"><?php echo $data['actual_balance'];?></li>
-			<li id="virtualBalance"><?php echo $data['virtual_balance'];?></li>
+			<li id="virtualBalance"><?php echo $data['actual_balance'];?></li>
 			<li id="bank"><?php echo $data['bank'];?></li>
 			<li id="accountNr"><?php echo $data['account_number'];?></li>
 		</ul>

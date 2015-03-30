@@ -52,7 +52,7 @@
 	</div>
 		
 
-	<div class="container">
+	<div class="containerNasdaq">
 	
 		<ul class="infoRow">
             <li id="index">INDEX</li>
@@ -60,27 +60,29 @@
 			<li id="latestPrice">LATEST PRICE</li>
 			<li id="availability">AVAILABILITY</li>
 		</ul>
-		<hr>
+		<hr id="nasdaqHr">
+
+	
 		
         <?php //var_dump($data);
         echo "<div id='allStocks'>";
         foreach($data as $stock): ?>
-
+		
             <div id='stockName'><?php echo $stock['symbol'] ?> </div>
             <div id='lastProcent'><?php echo $stock['last_change_procent'] ?></div>
             <div id='lastChangeProcent'><?php echo $stock['last_price'] ?></div>
             <div id='available'><?php echo $stock['available_for_shop'] ?></div>
 
             <form method="post" action="http://localhost/finance_app/user/shop/" class="amount_form">
-                <input class='stock_amount' name='stock_amount' type='test' placeholder="Amount"/>
-                <input name="shop" id='miniBuy' type='submit' value='BUY'/>
-                <input name="stock_id" type="hidden" value="<?php echo $stock['stock_id']?>" />
+                	<input name="shop" id='miniBuy' type='submit' value='BUY'/>
+                	<input class='stock_amount' name='stock_amount' type='test' placeholder="AMOUNT"/>
+                	<input name="stock_id" type="hidden" value="<?php echo $stock['stock_id']?>" />
             </form>
 
     <?php endforeach;
         echo "</div>";
         ?>
-    
+
 	</div>
 
 

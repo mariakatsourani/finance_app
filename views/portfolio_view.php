@@ -43,14 +43,14 @@
 	</div>
 
 	<div class="titlepage">
-		
+		<div id="myAccLogout">
 		<span class="bold">PORTFOLIO</span><br/>
 		<span class="fontSize">OVERVIEW</span>
-
+		</div>
 	</div>
 		
 
-	<div class="container">
+	<div class="containerPortfolio">
 	
 		<ul class="inlineOver">
 			<li id="nameOver">NAME</li>
@@ -73,12 +73,14 @@
                 <li id="returnPortfolio"><?php echo $stock['last_price'] - abs($stock['price']) ?></li>
                 <li id="changePortfolio"><?php echo $stock['last_change'] ?></li>
                 <li id="amountPortfolio"><?php echo $stock['total_stocks'] ?></li>
-                <form method="post" action="http://localhost/finance_app/user/sell/" class="amount_form">
-                    <input name="price" type="text" class="" placeholder="Price"/>
-                    <input name="stock_amount" type="text" class="stock_amount" placeholder="Amount"/>
-                    <input name="sell" id="miniSell" type="submit" value="SELL">
-                    <input name="stock_id" type="hidden" value="<?php echo $stock['stock_id'] ?>" />
-                </form>
+                <div id="portfolioInputs">
+	                <form method="post" action="http://localhost/finance_app/user/sell/" class="amount_form">
+	                   	<input name="sell" id="miniSell" type="submit" value="SELL">
+	                    <input name="price" type="text" class="stock_amountPrice" placeholder="PRICE"/>
+	                    <input name="stock_amount" type="text" class="stock_amountPortfolio" placeholder="AMOUNT"/>
+	                    <input name="stock_id" type="hidden" value="<?php echo $stock['stock_id'] ?>" />
+	                </form>
+                </div>
             </ul>
         <?php endforeach;
         endif?>

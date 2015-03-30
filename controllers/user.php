@@ -188,7 +188,7 @@ class User extends Controller{
                             FROM transactions AS t
                             JOIN users_stocks AS us ON t.stock_id = us.stock_id
                             JOIN stocks AS s ON t.stock_id = s.stock_id
-                            WHERE (t.user_id=:user_id AND t.stock_id=:stock_id) AND t.price<0
+                            WHERE (t.user_id=:user_id AND t.stock_id=:stock_id)
                             ORDER BY t.date DESC
                             LIMIT 1';
                 $params = array('user_id' => $_SESSION['id'], 'stock_id' => $id);
